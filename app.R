@@ -1,5 +1,5 @@
 # Pre-Shiny Code ----
-
+library("shiny")
 options(shiny.autoload.r = TRUE)
 
 # mydata <- readxl::read_xlsx(path = here::here("mydata.xlsx"))
@@ -298,7 +298,27 @@ ui <- navbarPage(
   
   
   tabPanel(
-    "Correlation"
+    "Correlation",
+    
+    
+    
+    
+    
+    tabsetPanel(
+      tabPanel("Plot"
+               
+               ),
+      
+      
+      tabPanel("Summary"
+               
+               
+               ), 
+      tabPanel("Table"
+               
+               
+               )
+    )
     
     
     
@@ -311,7 +331,27 @@ ui <- navbarPage(
   
   
   tabPanel(
-    "ROC"
+    "ROC",
+    
+    
+    
+    
+    
+    navlistPanel(
+      "Header A",
+      tabPanel("Component 1"),
+      tabPanel("Component 2"),
+      "Header B",
+      tabPanel("Component 3"),
+      tabPanel("Component 4"),
+      "-----",
+      tabPanel("Component 5")
+    )
+    
+    
+    
+    
+    
     
     
     

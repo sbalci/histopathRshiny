@@ -22,11 +22,11 @@ mypackages <- c("shiny",
                 "remotes"
 )
 
-install_pkg <- function(name, ...) {
-  if (!requireNamespace(name, quietly = TRUE)) {
-    install.packages(name, ...)
-  }
-}
+# install_pkg <- function(name, ...) {
+#   if (!requireNamespace(name, quietly = TRUE)) {
+#     install.packages(name, ...)
+#   }
+# }
 
 if (!requireNamespace("purrr", quietly = TRUE)) {
   install.packages("purrr")
