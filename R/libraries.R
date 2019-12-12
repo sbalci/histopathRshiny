@@ -32,7 +32,7 @@ if (!requireNamespace("purrr", quietly = TRUE)) {
   install.packages("purrr")
 }
 
-purrr::map(.x = mypackages, .f = install_pkg)
+# purrr::map(.x = mypackages, .f = install_pkg)
 
 if (!requireNamespace("report", quietly = TRUE)) {
   remotes::install_github("easystats/report")
