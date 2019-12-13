@@ -57,7 +57,7 @@ ui <- navbarPage(
         tags$br(),
         tags$br(),
         
-        
+        # TODO add code to make fake data each time ----
         
         
         downloadButton(outputId = "downloadExample", label = "Download Fake Excel"),
@@ -179,10 +179,10 @@ ui <- navbarPage(
     
     
     tags$hr(),
-
+    
     # Row: First Page Second Raw ----
     
-        
+    
     fluidRow(
       column(
         6,
@@ -194,7 +194,7 @@ ui <- navbarPage(
         
         # Output: show data ----
         
-
+        
         reactable::reactableOutput("dfshow"),
         
         
@@ -213,7 +213,7 @@ ui <- navbarPage(
         
         # Output: show data modified ----
         
-
+        
         reactable::reactableOutput("dfshow_modified"),
         
         
@@ -281,7 +281,7 @@ ui <- navbarPage(
     
     
     tabPanel("Continious"),
-
+    
     # Pages: Categorical ----
     
     
@@ -297,33 +297,19 @@ ui <- navbarPage(
   # Pages: Correlation ----
   
   
-  tabPanel(
-    "Correlation",
-    
-    
-    
-    
-    
-    tabsetPanel(
-      tabPanel("Plot"
-               
-               ),
-      
-      
-      tabPanel("Summary"
-               
-               
-               ), 
-      tabPanel("Table"
-               
-               
-               )
-    )
-    
-    
-    
-    
-  ),
+  tabPanel("Correlation",
+           
+           
+           
+           
+           
+           tabsetPanel(
+             tabPanel("Plot"),
+             
+             
+             tabPanel("Summary"),
+             tabPanel("Table")
+           )),
   
   
   
@@ -381,7 +367,20 @@ ui <- navbarPage(
       # Sidebar panel for inputs ----
       
       sidebarPanel(
-        # Input: Select Factor ----
+        
+        
+        # Input: Select Survival Time ----
+        
+        selectizeInput(
+          inputId = 'survivaltime',
+          'Select Survival Time',
+          choices = NULL,
+          selected = NULL
+        ),
+        
+        
+        
+        # Input: Select Survival Factor ----
         selectInput(
           inputId = "Factor",
           label = "Choose a Factor Affecting Survival",
@@ -478,13 +477,15 @@ ui <- navbarPage(
   navbarMenu(
     "About",
     
-    
+    ## Pages:: Project ----
     
     tabPanel(
       title = "Project",
       
       
-      includeHTML("https://sbalci.github.io/histopathology-template/")
+      HTML("https://sbalci.github.io/histopathology-template/")
+      
+      # includeHTML("https://sbalci.github.io/histopathology-template/")
       
       
       
@@ -497,7 +498,86 @@ ui <- navbarPage(
       
     ),
     
-    tabPanel("References")
+    
+    ## Pages: References ----
+    
+    
+    
+    tabPanel(
+      "References",
+      
+      
+      
+      tags$b("Download References bib"),
+      tags$br(),
+      tags$br(),
+      
+      
+      downloadButton(outputId = "downloadbib", label = "Download Bibliography"),
+      tags$br(),
+      tags$br(),
+      tags$hr(),
+      
+      
+      
+      
+      
+      
+      tags$h3("Software & Libraries Used"),
+      p(
+        "The jamovi project (2019). jamovi. (Version 0.9) [Computer Software]. Retrieved from https://www.jamovi.org."
+      ),
+      p(
+        "R Core Team (2018). R: A Language and envionment for statistical computing. [Computer software]. Retrieved from https://cran.r-project.org/."
+      ),
+      p(
+        "Fox, J., & Weisberg, S. (2018). car: Companion to Applied Regression. [R package]. Retrieved from https://cran.r-project.org/package=car."
+      ),
+      p(
+        "Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686"
+      ),
+      p(
+        "Data processing was carried out with R (R Core Team, 2019) and the easystats ecosystem (Lüdecke, Waggoner, & Makowski, 2019; Makowski, Ben-Shachar, & Lüdecke, 2019)"
+      ),
+      tags$br(),
+      tags$hr(),
+      
+      
+      
+      tags$h3("Session Info"),
+      tags$br(),
+      verbatimTextOutput("references"),
+      tags$br(),
+      tags$hr(),
+      
+      
+      
+      tags$h3("Packages"),
+      tags$br(),
+      htmlOutput("packagesreport"),
+      tags$br(),
+      tags$hr(),
+      
+      
+      tags$h3("Packages"),
+      tags$br(),
+      htmlOutput("packagesreport2"),
+      tags$br(),
+      tags$hr(),
+      
+      
+      
+      tags$h3("Packages"),
+      tags$br(),
+      verbatimTextOutput("packagespacman"),
+      tags$br(),
+      tags$hr()
+      
+      
+      
+      
+      
+    )
     
     
   )
@@ -518,7 +598,9 @@ server <- function(input, output, session) {
   
   output$downloadExample <- downloadHandler(
     filename = function() {
-      paste0("fakedata.xlsx")
+      
+      paste(Sys.Date(), "histopathR", "fakedata.xlsx", sep = "-")
+      
     },
     
     content = function(file) {
@@ -671,6 +753,18 @@ server <- function(input, output, session) {
     
     
   })
+  
+  
+  # Func: Survival Preprocess ----
+  
+  
+  # Select: Survival Time ----
+  
+  updateSelectizeInput(session,
+                       'survivaltime',
+                       choices = names(mydata),
+                       server = TRUE)
+  
   
   
   
@@ -838,7 +932,9 @@ server <- function(input, output, session) {
   
   output$downloadModified <- downloadHandler(
     filename = function() {
-      paste0("modifiedData.xlsx")
+      
+      paste(Sys.Date(), "histopathR", "modifiedData.xlsx", sep = "-")
+      
     },
     
     
@@ -850,6 +946,101 @@ server <- function(input, output, session) {
     
   )
   
+  
+  
+  
+  
+  # References ----
+  
+  
+  
+  output$references <-
+    
+    renderPrint({
+      sessionInfo()
+      
+    })
+  
+  
+  output$packagesreport <-
+    
+    renderTable({
+      
+      report::cite_packages(session = sessionInfo())
+      
+    })
+  
+  
+  output$packagesreport2 <-
+    
+    
+    renderTable({
+      
+    report::show_packages(session = sessionInfo()) 
+      
+      
+    })
+  
+  
+  output$packagescitation <- 
+    
+    renderText({
+      
+      citation("tidyverse")
+      citation("readxl")
+      citation("janitor")
+      citation("report")
+      citation("finalfit")
+      citation("ggstatsplot")
+      
+    })
+  
+
+  
+  # Download References as bib ----
+  
+  
+  output$downloadbib <- downloadHandler(
+    filename = function() {
+      paste(Sys.Date(), "histopathR", "packages.bib", sep = "-")
+    },
+    
+    
+    content = function(file) {
+      
+      knitr::write_bib(x = c(.packages(), "knitr", "shiny"),
+                       file = file
+      )
+      
+    }
+    
+  )
+  
+  
+
+
+
+  
+  
+  
+  
+  output$packagespacman <- 
+    
+    renderText({
+      
+      pacman::p_loaded(all = TRUE)
+      
+    })
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
   
 }
 
