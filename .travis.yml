@@ -6,7 +6,7 @@ r: 3.6.0
 # Install packrat if needed and have it restore packages.
 install:
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
-  - R -e "renv::acticate(); renv::restore()"
+  - R -e "renv::activate(); renv::restore()"
 
 cache:
   # Main R library
