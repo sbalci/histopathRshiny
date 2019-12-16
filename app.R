@@ -1,4 +1,6 @@
 # Pre-Shiny Code ----
+library("shiny")
+
 suppressPackageStartupMessages({
 library("shiny")
 library("shinyBS")

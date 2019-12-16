@@ -11,6 +11,7 @@ if (!requireNamespace("shinytest", quietly = TRUE)) {
 }
 
 suppressPackageStartupMessages({
+library("shiny")
 library("testthat")
 library("shinytest")
 })
