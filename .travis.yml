@@ -10,7 +10,9 @@ r_cran_packages:
     - shiny 
     - testthat
     - shinyBS
-    
+r_github_packages:
+    - rstudio/distill
+    - easystats/report
 # Install renv if needed and have it restore packages.
 install:
   - R -e 'install.packages("testthat"); library("testthat")'
