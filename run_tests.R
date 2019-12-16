@@ -1,5 +1,13 @@
-library(testthat)
-library(shinytest)
+if (!requireNamespace("testthat", quietly = TRUE)) {
+  install.packages("testthat")
+}
+
+if (!requireNamespace("shinytest", quietly = TRUE)) {
+  install.packages("shinytest")
+}
+
+library("testthat")
+library("shinytest")
 
 test_that("Application works", {
   # Use compareImages=FALSE because the expected image screenshots were created

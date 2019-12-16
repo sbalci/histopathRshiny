@@ -12,7 +12,7 @@ r_cran_packages:
     
 # Install renv if needed and have it restore packages.
 install:
-  - R -e 'install.packages("testthat")'
+  - R -e 'install.packages("testthat"); library("testthat")'
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
   - R -e "renv::activate(); renv::restore()"
 
