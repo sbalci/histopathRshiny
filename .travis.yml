@@ -3,7 +3,11 @@ language: r
 sudo: false
 r: 3.6.0
 
-# Install packrat if needed and have it restore packages.
+r_cran_packages:
+    - shiny 
+    - testthat
+    
+# Install renv if needed and have it restore packages.
 install:
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
   - R -e "renv::activate(); renv::restore()"
