@@ -9,12 +9,13 @@ branches:
 r_cran_packages:
     - shiny 
     - testthat
+    - shinyBS
     
 # Install renv if needed and have it restore packages.
 install:
   - R -e 'install.packages("testthat"); library("testthat")'
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
-  - R -e "renv::activate(); renv::restore()"
+  - R -e "renv::consent(provided = TRUE); renv::activate(); renv::restore()"
 
 cache:
   # Main R library

@@ -1,3 +1,7 @@
+if (!requireNamespace("shinyBS", quietly = TRUE)) {
+  install.packages("shinyBS")
+}
+
 if (!requireNamespace("testthat", quietly = TRUE)) {
   install.packages("testthat")
 }
