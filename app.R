@@ -1,14 +1,26 @@
 # Pre-Shiny Code ----
 library("shiny")
+library("shinyBS")
+library("shinyLP")
+library("shinythemes")
+
+
 options(shiny.autoload.r = TRUE)
 
-# mydata <- readxl::read_xlsx(path = here::here("mydata.xlsx"))
+# Use this path for electron build:
+# mydata <- readxl::read_xlsx("mydata.xlsx")
 
 mydata <- readxl::read_xlsx(path = here::here("mydata.xlsx"))
 
 # mydata_modified <- readxl::read_xlsx(path = here::here("mydata_modified"))
 
 exampleData <- mydata
+
+
+# TODO ----
+
+# add landing page
+# shinyLP::runExample()
 
 
 # UI ----
@@ -34,6 +46,36 @@ ui <- navbarPage(
   
   p("Work in Progress See About -> Project Section"),
   tags$hr(),
+  
+  
+  
+  tabPanel("Introduction",
+           icon = icon("home"),
+           
+           jumbotron("Hi ShinyLP!",
+                     "Call attention to important application features or provide guidance",
+                     buttonLabel = "Click Me"),
+           
+           fluidRow(
+             column(6, panel_div(class_type = "primary", panel_title = "Directions",
+                                 content = "How to use the app")),
+             column(6, panel_div("success", "Application Maintainers",
+                                 HTML("Email Me: <a href='mailto:drserdarbalci@gmail.com?Subject=Shiny%20Help' target='_top'>Serdar Balci</a>")))
+           ),
+           
+           fluidRow(
+             column(6, panel_div("info", "App Status", "Work in Progress")),
+             column(6, panel_div("danger", "Last Update", "16.12.2019")
+                    
+                    
+                    )
+             
+           )
+           
+  ),
+             
+  
+  
   
   
   
@@ -108,6 +150,7 @@ ui <- navbarPage(
   
   tabPanel(
     "Brief Summary",
+    icon = icon("cog"),
     
     
     titlePanel("Data Summary"),
@@ -187,17 +230,36 @@ ui <- navbarPage(
   
   tabPanel("Correlation",
            
-           
+           sidebarPanel(
+             # fileInput("file1", "Choose csv file to upload", accept = ".csv"),
+             # selectInput("x_variable","Select X Variable",numericVars, 
+             #             selected=numericVars[1]),
+             # selectInput("y_variable", "Select Y Variable", numericVars, 
+             #             selected = numericVars[2]),
+             # 
+             # ##uncomment this code for step 4
+             # selectInput("color_variable", "Select Color Variable",
+             #             names(categoricalVars),
+             #             selected = names(categoricalVars[1])),
+             
+             plotOutput("scatter_plot")
+             
+           ),
            
            
            
            tabsetPanel(
+             
              tabPanel("Plot"),
              
              
              tabPanel("Summary"),
+             
              tabPanel("Table")
-           )),
+             
+           )
+           
+           ),
   
   
   
@@ -425,6 +487,8 @@ ui <- navbarPage(
     
     navbarMenu(
       "About",
+      icon = icon("info-circle"),
+      
       
       ## Page 7a: Project ----
       
@@ -450,12 +514,30 @@ ui <- navbarPage(
       
       ## Page 7b: References ----
       
+      tabPanel(
+        "References for this App",
+        
+        
+        tags$h3("Resources Used in Writing this App"),
+        
+        p("https://mastering-shiny.org"),
+        p("https://laderast.github.io/gradual_shiny/")
+        
+        
+      ),
       
+      
+      
+      ## Page 7b: References ----
       
       tabPanel(
-        "References",
+        "References for the Analysis",
         
         
+        
+        tags$h3("Package References Used in Analysis"),
+        
+        tags$hr(),
         
         tags$b("Download References bib"),
         tags$br(),
@@ -928,7 +1010,16 @@ output$upload_csv_ui <- renderUI({
     })
     
     
-
+    # myData <- reactive({
+    #   inFile <- input$file1
+    #   ##need to test whether input$file1 is null or not
+    #   if (is.null(inFile)) {
+    #     d <- mydata
+    #   } else {
+    #     d <- read.csv(inFile$datapath)
+    #   }
+    #   return(d)
+    # })
     
     
     # read_data <-
@@ -1140,8 +1231,41 @@ output$upload_csv_ui <- renderUI({
     
     
     
-
+# 4 Correlation -----
     
+    # output$scatter_plot <- renderPlot({
+    #   ggplot(read_data(), aes_string(y=input$y_variable, 
+    #                               x=input$x_variable, 
+    #                               color=input$color_variable
+    #                               
+    #   )) +  geom_point() 
+    #   
+    # })
+    
+    
+    observe({
+
+      num_vars <- get_numeric_variables(read_data())
+      
+
+      updateSelectInput(session, "x_variable",
+                        choices = num_vars,
+                        selected = num_vars[1])
+
+      updateSelectInput(session, "y_variable", 
+                        choices=num_vars,
+                        selected= num_vars[2])
+      
+      
+      
+      cat_vars <- names(get_category_variables(read_data()))
+      
+      
+      updateSelectInput(session, "color_variable",
+                        choices=cat_vars,
+                        selected=cat_vars[1])
+      
+    })
     
     
     
