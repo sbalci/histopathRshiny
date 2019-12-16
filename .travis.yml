@@ -2,6 +2,9 @@ dist: trusty   # Use Ubuntu 14.04 image (instead of 12.04)
 language: r
 sudo: false
 r: 3.6.0
+branches:
+    only:
+    - master
 
 r_cran_packages:
     - shiny 
@@ -9,6 +12,7 @@ r_cran_packages:
     
 # Install renv if needed and have it restore packages.
 install:
+  - R -e 'install.packages("testthat")'
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
   - R -e "renv::activate(); renv::restore()"
 
