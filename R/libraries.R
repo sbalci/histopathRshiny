@@ -29,9 +29,9 @@ mypackages <- c("shiny",
 # }
 
 
-if (!requireNamespace("pacman", quietly = TRUE)) {
-  install.packages("pacman")
-}
+# if (!requireNamespace("pacman", quietly = TRUE)) {
+#   install.packages("pacman")
+# }
 
 
 if (!requireNamespace("purrr", quietly = TRUE)) {

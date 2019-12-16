@@ -1,8 +1,10 @@
 # Pre-Shiny Code ----
+suppressPackageStartupMessages({
 library("shiny")
 library("shinyBS")
 library("shinyLP")
 library("shinythemes")
+})
 
 
 options(shiny.autoload.r = TRUE)
