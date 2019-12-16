@@ -13,12 +13,13 @@ r_cran_packages:
 r_github_packages:
     - rstudio/distill
     - easystats/report
+    - rstudio/renv
 # Install renv if needed and have it restore packages.
 install:
   - R -e 'install.packages("shiny"); library("shiny")'
   - R -e 'install.packages("testthat"); library("testthat")'
   - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
-  - R -e "renv::consent(provided = TRUE); renv::activate(); renv::restore()"
+  - R -e 'renv::consent(provided = TRUE); renv::restore()'
 
 cache:
   # Main R library
