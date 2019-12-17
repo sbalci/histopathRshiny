@@ -67,4 +67,5 @@ suppressPackageStartupMessages({
   library("shinyFeedback")
   library("lubridate")
   library("janitor")
+  library("correlation")
 })
