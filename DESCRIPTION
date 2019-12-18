@@ -1,0 +1,14 @@
+Package: histopathRshiny
+Title: Histopathology Research Template Shiny App
+Version: 0.0.0.9000
+Authors@R: person('Serdar', 'Balci', email = 'drserdarbalci@gmail.com', role = c('cre', 'aut'))
+Description: Histopathology Research Template Shiny App.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    shiny, 
+    golem
+RoxygenNote: 6.1.0
+URL: https://github.com/sbalci/histopathRshiny
+BugReports: https://github.com/sbalci/histopathRshiny/issues

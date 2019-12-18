@@ -28,6 +28,15 @@ mypackages <- c("shiny",
 #   }
 # }
 
+# if (!requireNamespace("correlation", quietly = TRUE)) {
+# devtools::install_github("easystats/correlation")
+#   }
+
+if (!requireNamespace("correlation", quietly = TRUE)) {
+renv::install("easystats/correlation")
+  }
+
+
 
 # if (!requireNamespace("pacman", quietly = TRUE)) {
 #   install.packages("pacman")
