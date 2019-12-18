@@ -10,3 +10,17 @@ $run_dev.*
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
 ^Rgolem$
+^\.travis\.yml$
+^appveyor\.yml$
+^/Users/serdarbalciold/histopathRshiny/Dockerfile$
+^Dockerfile$
+.gitignore
+.Rprofile
+reactlog.R
+rsconnect
+^Rcodes-tobeadded$
+app kopyası.R
+delete.R
+mydata-pre.xlsx
+^Rgolem$
+^dev_golem$

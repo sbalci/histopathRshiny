@@ -1,3 +1,17 @@
+# 4 Correlation Matrix ----
+
+output$corr_matrix <- renderTable({
+  
+  mydata <- corr_matrix_data()
+  
+  corr <- correlation::correlation(mydata)
+  
+  return(corr)
+  
+})
+
+
+
 
 
 ## Correlation Analysis

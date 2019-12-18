@@ -8,6 +8,7 @@ tabPanel(
   
   p("https://mastering-shiny.org"),
   p("https://laderast.github.io/gradual_shiny/"),
-  p("https://github.com/ewenharrison/shinyfit/")
-  
+  p("https://github.com/ewenharrison/shinyfit/"),
+  p("https://thinkr-open.github.io/golem/"),
+  p("https://github.com/ThinkR-open/shinysnippets")
 )

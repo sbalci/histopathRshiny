@@ -6,10 +6,48 @@ branches:
     only:
     - master
 
+r_packages:
+    - janitor
+    - jmv
+    - kableExtra
+    - magicfor
+    - pkgdown
+
+r_binary_packages:
+    - devtools
+    - testthat
+    - rmarkdown
+    - knitr
+    - dplyr
+    - magrittr
+
+r_github_packages:
+    - rstudio/distill
+    - easystats/report
+    - r-lib/covr
+
 r_cran_packages:
     - shiny 
     - testthat
     - shinyBS
+
+
+after_success:
+#  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::coveralls()'
+
+
+
+before_script:
+    - Rscript -e 'print("before script")'
+
+r_github_packages:
+    - sbalci/histopathR
+
+
+
+
 r_github_packages:
     - rstudio/distill
     - easystats/report
@@ -43,5 +81,17 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
+
 script:
   - R -f run_tests.R
+  - Rscript -e 'pkgdown::build_site()'
+
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_PAT
+    on:
+        branch: master
+    local_dir: docs
+    target_branch: gh-pages
