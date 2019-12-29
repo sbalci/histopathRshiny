@@ -25,34 +25,21 @@ r_github_packages:
     - rstudio/distill
     - easystats/report
     - r-lib/covr
+    - rstudio/renv
 
 r_cran_packages:
     - shiny 
     - testthat
     - shinyBS
 
-
 after_success:
 #  - Rscript -e 'library(covr); codecov()'
   - Rscript -e 'covr::codecov()'
   - Rscript -e 'covr::coveralls()'
 
-
-
 before_script:
     - Rscript -e 'print("before script")'
 
-r_github_packages:
-    - sbalci/histopathR
-
-
-
-
-r_github_packages:
-    - rstudio/distill
-    - easystats/report
-    - rstudio/renv
-# Install renv if needed and have it restore packages.
 install:
   - R -e 'install.packages("shiny"); library("shiny")'
   - R -e 'install.packages("testthat"); library("testthat")'
@@ -81,10 +68,9 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
-
 script:
-  - R -f run_tests.R
-  - Rscript -e 'pkgdown::build_site()'
+  # - R -f run_tests.R
+  # - Rscript -e 'pkgdown::build_site()'
 
 
 deploy:
