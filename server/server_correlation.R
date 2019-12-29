@@ -1,10 +1,107 @@
+## Correlation Analysis ----
+
+# https://easystats.github.io/correlation/
+
 # 4 Correlation Matrix ----
 
 output$corr_matrix <- renderTable({
   
-  mydata <- corr_matrix_data()
+corr <- corr()
+
+return(corr)
   
-  corr <- correlation::correlation(mydata)
+})
+
+
+output$corr_summary <- renderTable({
+  
+  corr <- corr()
+  
+  corr <- summary(corr)
+  
+  return(corr)
+  
+})
+
+
+output$corr_summary2 <- renderPrint({
+  
+  corr <- corr()
+  
+  corr <- as.table(corr)
+  
+  return(corr)
+  
+})
+
+
+
+output$corr_plot <- renderPlot({
+  
+  corr <- corr()
+  
+  corr %>% 
+    as.matrix() %>% 
+    ggcorrplot::ggcorrplot()
+  
+})
+
+
+
+
+# https://neuropsychology.github.io/psycho.R/2018/05/20/correlation.html
+
+# devtools::install_github("neuropsychology/psycho.R")
+# library(psycho)
+
+psy_cor <- reactive({
+  
+mydata <- corr_matrix_data()
+  
+cor <- mydata %>%
+  psycho::correlation()
+  
+})
+
+
+
+output$psy_cor_tab <- renderPrint({
+  
+  corr <- psy_cor()
+  
+  return(corr)
+  
+})
+
+
+output$psy_cor_sum <- renderPrint({
+  
+  corr <- psy_cor()
+  
+  corr <- summary(corr)
+  
+  return(corr)
+  
+})
+
+
+output$psy_cor_plot <- renderPlot({
+  
+  corr <- psy_cor()
+  
+  corr <- plot(corr)
+  
+  return(corr)
+  
+})
+
+
+
+output$psy_cor_pr <- renderPrint({
+  
+  corr <- psy_cor()
+  
+  corr <- print(corr)
   
   return(corr)
   
@@ -14,24 +111,33 @@ output$corr_matrix <- renderTable({
 
 
 
-## Correlation Analysis
 
 
-# TODO ----
+# cor %>%
+#   report::to_values()
 
-#  https://easystats.github.io/correlation/
-# install.packages("devtools")
-# devtools::install_github("easystats/correlation")
-# library("correlation")
-
-
+# summary(cor) %>%
+#   knitr::kable(format = "latex") %>%
+#   kableExtra::kable_styling(latex_options="scale_down")
 
 
-
-
+# ggplot(mydata, aes(x = tx_zamani_verici_yasi, y = trombosit)) +
+#   geom_point() +
+#   geom_smooth(method = lm, size = 1)
 
 
 
+# References:
+#   Automated Interpretation of Metrics and Effect Sizes
+#   https://easystats.github.io/report/articles/interpret_metrics.html
+
+
+
+
+# mydata %>%
+#   select(continiousVariables,
+#  -dateVariables) %>%
+#   visdat::vis_cor()
 
 
 
@@ -134,56 +240,6 @@ output$corr_matrix <- renderTable({
 #   inspectdf::show_plot()
 
 
-
-
-# https://neuropsychology.github.io/psycho.R/2018/05/20/correlation.html
-
-# devtools::install_github("neuropsychology/psycho.R")
-
-
-# library(psycho)
-
-# cor <- psycho::affective %>%
-# correlation()
-
-# summary(cor)
-
-
-# plot(cor)
-
-
-# print(cor)
-
-
-
-
-
-
-# cor %>%
-#   report::to_values()
-
-# summary(cor) %>%
-#   knitr::kable(format = "latex") %>%
-#   kableExtra::kable_styling(latex_options="scale_down")
-
-
-# ggplot(mydata, aes(x = tx_zamani_verici_yasi, y = trombosit)) +
-#   geom_point() +
-#   geom_smooth(method = lm, size = 1)
-
-
-
-# References:
-#   Automated Interpretation of Metrics and Effect Sizes
-#   https://easystats.github.io/report/articles/interpret_metrics.html
-
-
-
-
-# mydata %>%
-#   select(continiousVariables,
-#  -dateVariables) %>%
-#   visdat::vis_cor()
 
 
 

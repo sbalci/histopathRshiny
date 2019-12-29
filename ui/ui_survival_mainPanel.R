@@ -46,7 +46,7 @@ mainPanel(
   # Output: comment ----
   
   tags$h3("My Comments"),
-  textOutput("comment")
+  textOutput("comment_survival")
   
   
 )

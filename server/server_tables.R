@@ -64,6 +64,10 @@ output$uploaded_csv_data_tab <-
 
 output$uploaded_excel_data_tab <-
   reactable::renderReactable({
+    
+    req(input$excel_Button)
+    
+    
     mydata <- uploaded_excel_data()
     
     return(

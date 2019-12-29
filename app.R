@@ -32,7 +32,7 @@ ui <- navbarPage(
   theme = shinythemes::shinytheme("spacelab"),
   shinyFeedback::useShinyFeedback(),
   tags$style("#switcher { display:none; }"),
-  
+  # rintrojs::introjsUI(),
   
   # Landing Page ----
   tabPanel(
@@ -144,8 +144,59 @@ ui <- navbarPage(
                    multiple = TRUE
                  )
                ),
-               mainPanel(p("Matrix"),
-                         tableOutput("corr_matrix"))
+              
+              mainPanel(
+                tags$h3("Correlation Matrix"),
+                tableOutput("corr_matrix"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Summary"),
+                tableOutput("corr_summary"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Summary 2"),
+                verbatimTextOutput("corr_summary2"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Plot"),
+                plotOutput("corr_plot"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("References"),
+                p("https://easystats.github.io/correlation/"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Matrix"),
+                verbatimTextOutput("psy_cor_tab"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                verbatimTextOutput("psy_cor_sum"),
+                tags$h3("Correlation Matrix"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Matrix"),
+                
+                plotOutput("psy_cor_plot"),
+                tags$br(),
+                tags$br(),
+                tags$hr(),
+                tags$h3("Correlation Matrix"),
+                
+                verbatimTextOutput("psy_cor_pr"),
+                tags$br(),
+                tags$br(),
+                tags$hr()
+                
+                
+                
+                )
                
              )
            )),
@@ -317,6 +368,13 @@ server <- function(input, output, session) {
   
   source(file.path("server", "server_excel_ui.R"),  local = TRUE)$value
   
+  
+  # Func: read_data
+  
+  source(file.path("server", "server_read_data.R"),  local = TRUE)$value
+  
+  
+  
   # 2 Brief Summary ----
   
   source(file.path("server", "server_brief_summary.R"),  local = TRUE)$value
@@ -328,6 +386,10 @@ server <- function(input, output, session) {
   
   # Func: Survival ----
   source(file.path("server", "server_survival_func.R"),  local = TRUE)$value
+  
+  
+  # Func: Correlation ----
+  source(file.path("server", "server_correlation.R"),  local = TRUE)$value
   
   
   

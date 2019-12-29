@@ -1,12 +1,5 @@
 # generate UI: Survival ----
 
-
-
-
-
-
-
-
 output$surv_time_ui <- renderUI({
   if (is.null(input$input_type))
     return()

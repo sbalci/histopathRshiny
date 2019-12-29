@@ -1,6 +1,7 @@
 # 1 genUI: Test Data ----
 
 output$test_ui <- renderUI({
+  
   if (is.null(input$select_data_ui))
     return()
   
@@ -19,7 +20,27 @@ output$test_ui <- renderUI({
       tags$br(),
       tags$br(),
       
-      actionButton(inputId = "test_Button", "Approve"),
+      # shinyWidgets::switchInput(inputId = "test_Button", value = FALSE),
+      
+      # actionButton(inputId = "test_Button", "Approve"),
+      # rintrojs::introjsUI(),
+      
+      # rintrojs::introBox(
+      
+        shinyWidgets::materialSwitch(inputId = "test_Button",
+                                     label = "Slide to Approve",
+                                     status = "info"
+                                     ),
+        
+        # data.step = 1,
+        # data.intro = "This is a slider",
+        # data.hint = "You have to Slide to Approve"
+        # ),
+      
+      # shinyWidgets::prettyCheckbox(
+      #   inputId = "test_Button", label = "Approve", icon = icon("check")
+      # ),
+      
       p("Click the button to approve using data below"),
       
       tags$br(),

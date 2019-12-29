@@ -22,5 +22,4 @@ rsconnect
 app kopyası.R
 delete.R
 mydata-pre.xlsx
-^Rgolem$
 ^dev_golem$

@@ -1,3 +1,3 @@
 # Func: Comment ----
 
-output$comment <- renderText(input$comment)
+output$comment_survival <- renderText(input$comment)

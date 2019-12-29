@@ -19,7 +19,9 @@ mypackages <- c("shiny",
                 "shinyFeedback",
                 "lubridate",
                 "janitor",
-                "remotes"
+                "remotes",
+                "shinyWidgets",
+                "rintrojs"
 )
 
 # install_pkg <- function(name, ...) {
@@ -77,4 +79,6 @@ suppressPackageStartupMessages({
   library("lubridate")
   library("janitor")
   library("correlation")
+  library("shinyWidgets")
+  library("rintrojs")
 })

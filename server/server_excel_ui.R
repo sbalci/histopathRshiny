@@ -1,7 +1,8 @@
 # 1 genUI: Upload excel Data ----
 
 output$upload_excel_ui <- renderUI({
-  if (is.null(input$select_data_ui))
+
+    if (is.null(input$select_data_ui))
     return()
   
   if (input$select_data_ui == "excel_ui")

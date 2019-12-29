@@ -31,5 +31,24 @@ corr_matrix_data <- reactive({
     
     read_data() %>%
       dplyr::select(-corr_matrix_Cols)
+    
   }
+  
+
+  
 })
+
+
+
+# 4 Correlation ----
+
+corr <- reactive({
+
+  mydata <- corr_matrix_data()
+
+  corr <- correlation::correlation(mydata)
+
+})
+
+
+

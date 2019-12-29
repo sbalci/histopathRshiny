@@ -18,6 +18,7 @@ uploaded_csv_data <- reactive({
 
 
 uploaded_excel_data <- reactive({
+  
   req(input$uploaded_excel_file)
   
   readxl::read_excel(path = input$uploaded_excel_file$datapath)
