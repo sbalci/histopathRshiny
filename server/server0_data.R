@@ -1,7 +1,7 @@
 # Use this path for electron build:
 # mydata <- readxl::read_xlsx("mydata.xlsx")
 
-mydata <- readxl::read_xlsx(path = here::here("mydata.xlsx"))
+mydata <- readxl::read_excel(path = here::here("mydata.xlsx"), na = c("", "NA"))
 
 # mydata_modified <- readxl::read_xlsx(path = here::here("mydata_modified"))
 
@@ -28,3 +28,12 @@ list2objects = function(.list){
 
 # Expand shinyfit data object
 # list2objects(alldata_list)
+
+
+pivot_module <- function(input, output, session){
+  
+  df <- starwars %>%
+    select_if(is.character)
+  
+  pivot_vars <- get_pivot_vars(df)
+}

@@ -2,6 +2,7 @@
 
 export(get_category_variables)
 export(get_numeric_variables)
+export(time_interval)
 importFrom(glue,glue)
 importFrom(htmltools,HTML)
 importFrom(htmltools,tagAppendAttributes)

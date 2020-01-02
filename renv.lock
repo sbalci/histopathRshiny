@@ -802,10 +802,15 @@
     },
     "htmlwidgets": {
       "Package": "htmlwidgets",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "41bace23583fbc25089edae324de2dc3"
+      "Version": "1.5.1.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "htmlwidgets",
+      "RemoteUsername": "ramnathv",
+      "RemoteRef": "master",
+      "RemoteSha": "b3573236c4553019b30e595adcb4fbe693f4a834",
+      "Hash": "a267d33269f0a2cee727952db518a2f7"
     },
     "httpuv": {
       "Package": "httpuv",
@@ -1507,6 +1512,18 @@
       "Repository": "CRAN",
       "Hash": "9787c1fcb680e655d062e7611cadf78e"
     },
+    "rpivotTable": {
+      "Package": "rpivotTable",
+      "Version": "0.3.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "rpivotTable",
+      "RemoteUsername": "smartinsightsfromdata",
+      "RemoteRef": "master",
+      "RemoteSha": "bd626a821479e74e0240e7972008d46bca14cdb7",
+      "Hash": "762c09e1566dd8b5c182da2e15b3427c"
+    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "1.3-2",
@@ -1570,15 +1587,10 @@
     },
     "shiny": {
       "Package": "shiny",
-      "Version": "1.4.0.9001",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "shiny",
-      "RemoteUsername": "rstudio",
-      "RemoteRef": "master",
-      "RemoteSha": "89be4bdce9dce6f8042087ce6ece0763eb8bb10c",
-      "Hash": "08793232c1b322f634a8e55b683dc7e7"
+      "Version": "1.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6ca23724bb2c804c1d0b3db4862a39c7"
     },
     "shinyBS": {
       "Package": "shinyBS",
@@ -1600,6 +1612,18 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0ec363896d7bf1af7c60fa5813e43630"
+    },
+    "shinyPivot": {
+      "Package": "shinyPivot",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "shinyPivot",
+      "RemoteUsername": "ablack3",
+      "RemoteRef": "ablack3/shinyPivot",
+      "RemoteSha": "372b243fc6097c37488a94c461db5315b41ca26f",
+      "Hash": "f074a8b09bb9fe3c04a778a2ca69db64"
     },
     "shinyWidgets": {
       "Package": "shinyWidgets",

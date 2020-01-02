@@ -108,10 +108,15 @@ output$psy_cor_pr <- renderPrint({
 })
 
 
+output$corr_highcharter <- highcharter::renderHighchart({
+  
+ 
+  corr <- corr()
+  
+  highcharter::hchart(cor(corr))
 
 
-
-
+})
 
 # cor %>%
 #   report::to_values()

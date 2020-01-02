@@ -1,22 +1,3 @@
-## Some helper functions to simplify our app
-## from this tutorial https://laderast.github.io/gradual_shiny/app-3-adding-tooltips-with-plotly.html
-
-#' Return the numeric categorical variables 
-#'
-#' @param df 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-get_numeric_variables <- function(df){
-  varClass <- sapply(df, class)
-  
-  numericVars <- names(varClass[varClass %in% c("numeric", "integer")])
-  return(numericVars)
-}
-
-
 #' Return a list of categories given a data.frame
 #'
 #' @param df 
@@ -24,7 +5,6 @@ get_numeric_variables <- function(df){
 #' @return named list with each entry listing all categories within a variable in the df
 #' @export
 #'
-#' @examples
 get_category_variables <- function(df) {
   
   ## get variable classes
@@ -49,7 +29,7 @@ get_category_variables <- function(df) {
   
   ##remove null values from list
   char_list <- char_list[lapply(char_list,length)!=0]
-
+  
   return(char_list)
   
 }

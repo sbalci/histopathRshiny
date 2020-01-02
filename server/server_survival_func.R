@@ -137,6 +137,33 @@ output$KMPlot <-
     
   })
 
+
+# Func: Kaplan-Meier highcharter ----
+
+
+output$KMPlot_highcharter <- highcharter::renderHighchart({
+  
+  mydata <- dataSurvival()
+  
+  mydata$Outcome <- mydata$Death
+  
+  mydata$OverallTime <-
+    as.numeric(as.character(mydata$OverallTime))
+  
+  formula_text <-
+    paste0("Surv(OverallTime, Outcome) ~ ", input$survfactor)
+  
+  km_fit <- survfit(as.formula(formula_text),
+                    data = mydata)
+  
+  
+  highcharter::hchart(km_fit, ranges = TRUE)
+  
+  
+  
+})
+
+
 # Func: Cox-Regression ----
 
 

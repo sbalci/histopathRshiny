@@ -14,3 +14,26 @@ output$scatter_plot <- renderPlot({
     geom_point()
   
 })
+
+
+
+
+
+output$scatter_plot_highcharter <- highcharter::renderHighchart({
+  
+  mydata <- read_data()
+  x <- input$x_variable
+  y <- input$y_variable
+  group <- input$color_variable
+  
+  highcharter::hchart(mydata, 
+                      "scatter",
+    highcharter::hcaes(x = x,
+                            y = y,
+                            group = group
+                            )
+                      )
+})
+
+
+  
