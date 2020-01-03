@@ -237,8 +237,8 @@ ui <- navbarPage(
     tabPanel(
       "Pivot Table 1",
 
-      p("Pivot Table 1")
-      # source(file.path("ui", "ui_pivot1.R"),  local = TRUE)$value
+      p("Pivot Table 1"),
+      source(file.path("ui", "ui_pivot1.R"),  local = TRUE)$value
     ),
 
 
@@ -446,7 +446,7 @@ server <- function(input, output, session) {
   source(file.path("server", "decision_server_table.R"), local = TRUE)$value
 
   # Pivot 1 ----
-  # source(file.path("server", "server_pivot1.R"),  local = TRUE)$value
+  source(file.path("server", "server_pivot1.R"),  local = TRUE)$value
 
   # Pivot 2 ----
   source(file.path("server", "server_pivot2.R"), local = TRUE)$value

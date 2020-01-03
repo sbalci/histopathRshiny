@@ -10,5 +10,6 @@ tabPanel(
   p("https://laderast.github.io/gradual_shiny/"),
   p("https://github.com/ewenharrison/shinyfit/"),
   p("https://thinkr-open.github.io/golem/"),
-  p("https://github.com/ThinkR-open/shinysnippets")
+  p("https://github.com/ThinkR-open/shinysnippets"),
+  p("https://github.com/ablack3/shinyPivot")
 )
