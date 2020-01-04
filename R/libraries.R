@@ -22,7 +22,8 @@ mypackages <- c("shiny",
                 "remotes",
                 "shinyWidgets",
                 "rintrojs",
-                "highcharter"
+                "highcharter",
+                "plotly"
 )
 
 # install_pkg <- function(name, ...) {
@@ -83,4 +84,5 @@ suppressPackageStartupMessages({
   library("shinyWidgets")
   library("rintrojs")
   library("highcharter")
+  library("plotly")
 })

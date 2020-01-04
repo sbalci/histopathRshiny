@@ -32,6 +32,19 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("sbalci/histopathRshiny")
 ```
 
+Launch here: <https://serdarbalci.shinyapps.io/histopathR/>
+
+Run in your own computer R session:
+
+``` r
+library(shiny)
+runUrl("https://github.com/sbalci/histopathRshiny/raw/master/histopathRshiny.tar")
+```
+
+``` r
+shiny::runGitHub('sbalci/histopathRshiny')
+```
+
 <!-- ## Example -->
 
 <!-- This is a basic example which shows you how to solve a common problem: -->

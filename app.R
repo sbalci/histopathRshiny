@@ -358,6 +358,17 @@ ui <- navbarPage(
 
   # Page 7: About ----
 
+  
+  navbarMenu(
+    "Trials",
+    icon = icon("info-circle"),
+    
+        source(file.path("ui", "ui_trial1.R"), local = TRUE)$value
+    
+    
+  ),
+  
+  
 
   navbarMenu(
     "About",
