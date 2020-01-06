@@ -25,4 +25,16 @@ uploaded_excel_data <- reactive({
   
 })
 
+# 1 Uploaded SPSS Data ----
+
+
+uploaded_spss_data <- reactive({
+  
+  req(input$uploaded_spss_file)
+  
+  foreign::read.spss(input$uploaded_spss_file$datapath,
+                     use.value.labels = TRUE,
+                     to.data.frame = TRUE)
+    
+})
 

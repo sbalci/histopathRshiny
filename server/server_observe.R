@@ -11,20 +11,53 @@ observeEvent(input$excel_Button, {
   button_val(new_val)
 })
 
+observeEvent(input$spss_Button, {
+  new_val <- "sav"
+  button_val(new_val)
+})
+
+
 output$value55 <- renderText({
   button_val()
 })
 
+
 read_data <- reactiveVal()
 
 observe({
+
   button <- button_val()
+
   if (button == "excel") {
+
     read_data(uploaded_excel_data())
-  } else if (button == "test" | button == "init") {
-    read_data(testdata())
+
+    # } else if (button == "sav") {
+    #
+    #   read_data(uploaded_spss_data())
+
+      } else if (button == "test" | button == "init") {
+
+        read_data(testdata())
   }
 })
+
+
+# observe({
+#   
+#   button <- button_val()
+#   
+#   mydata <- switch (button,
+#     "test" = testdata(),
+#     "init" = testdata(),
+#     "excel" = uploaded_excel_data(),
+#     "sav" = uploaded_spss_data()
+#   )
+#   
+#   read_data(mydata)
+# 
+# })
+
 
 
 

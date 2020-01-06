@@ -1,3 +1,7 @@
+# TODO ----
+
+# https://rstudio.github.io/shinytest/articles/ci.html
+
 # Pre-Shiny Code ----
 # Library ----
 library("shiny")
@@ -60,12 +64,16 @@ ui <- navbarPage(
           choiceNames = c(
             "Test Data",
             "Upload CSV",
-            "Upload Excel"
+            "Upload Excel",
+            "Upload SPSS",
+            "Upload General"
           ),
           choiceValues = c(
             "testdata_ui",
             "csv_ui",
-            "excel_ui"
+            "excel_ui",
+            "spss_ui",
+            "general_ui"
           )
         )
       ),
@@ -73,7 +81,9 @@ ui <- navbarPage(
         # This outputs the dynamic UI component
         uiOutput("test_ui"),
         uiOutput("upload_csv_ui"),
-        uiOutput("upload_excel_ui")
+        uiOutput("upload_excel_ui"),
+        uiOutput("upload_spss_ui"),
+        uiOutput("upload_general_ui")
       )
     ))
   ),
@@ -425,18 +435,24 @@ server <- function(input, output, session) {
 
   source(file.path("server", "server_excel_ui.R"), local = TRUE)$value
 
-
+  # genUI 1 spss ----
+  
+  source(file.path("server", "server_spss_ui.R"), local = TRUE)$value
+  
+  # genUI 1 general ----
+  
+  source(file.path("server", "server_general_ui.R"), local = TRUE)$value
+  
+  source(file.path("server", "server_general_upload.R"), local = TRUE)$value
+  
   # Func: read_data
 
   source(file.path("server", "server_read_data.R"), local = TRUE)$value
 
 
-
   # 2 Brief Summary ----
 
   source(file.path("server", "server_brief_summary.R"), local = TRUE)$value
-
-
 
   # genUI: Survival  ----
   source(file.path("server", "server_survival_ui.R"), local = TRUE)$value

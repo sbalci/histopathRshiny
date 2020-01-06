@@ -65,7 +65,7 @@ output$uploaded_csv_data_tab <-
 output$uploaded_excel_data_tab <-
   reactable::renderReactable({
     
-    req(input$excel_Button)
+    # req(input$excel_Button)
     
     
     mydata <- uploaded_excel_data()
@@ -96,12 +96,44 @@ output$uploaded_excel_data_tab <-
 
 
 
+
+# SPSS Data Preview ----
+
+output$uploaded_spss_data_tab <-
+  reactable::renderReactable({
+    
+    # req(input$spss_Button)
+    
+    mydata <- uploaded_spss_data()
+    
+    return(
+      reactable::reactable(
+        mydata,
+        bordered = TRUE,
+        minRows = 5,
+        sortable = TRUE,
+        resizable = TRUE,
+        filterable = TRUE,
+        searchable = TRUE,
+        pagination = TRUE,
+        paginationType = "numbers",
+        showPageSizeOptions = TRUE,
+        highlight = TRUE,
+        striped = TRUE,
+        outlined = TRUE,
+        compact = TRUE,
+        wrap = FALSE,
+        showSortIcon = TRUE,
+        showSortable = TRUE
+      )
+    )
+    
+  })
+
+
 output$dfshow_modified <-
   reactable::renderReactable({
     req(input$survivaltime)
-    
-    
-    
     
     mydata <- dataSurvival()
     
