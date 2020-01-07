@@ -3,17 +3,18 @@ language: r
 sudo: false
 r: 3.4.1
 
-# Install packrat if needed and have it restore packages.
+# Install renv if needed and have it restore packages.
 install:
-  - R -e 'if (system.file(package="packrat") == "") install.packages("packrat")'
-  - R -e "packrat::packify(); packrat::restore()"
+  - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
+  - R -e "renv::consent(provided = TRUE); renv::restore()"
 
 cache:
   # Main R library
   packages: true
   directories:
-    # Packrat packages
-    - packrat/lib
+    # renv packages
+    - $HOME/.local/share/renv
+    - $TRAVIS_BUILD_DIR/renv/library
     # PhantomJS
     - travis_phantomjs
 

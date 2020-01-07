@@ -1,7 +1,7 @@
 Package: histopathRshiny
 Title: Histopathology Research Template Shiny App
 Version: 0.0.0.9000
-Authors@R: person('Serdar', 'Balci', email = 'drserdarbalci@gmail.com', role = c('cre', 'aut'))
+Authors@R: person('Serdar', 'Balci', email = 'drserdarbalci@gmail.com', role = c('cre', 'aut'), comment = c(ORCID = "0000-0002-7852-3851"))
 Description: Histopathology Research Template Shiny App.
 License: MIT + file LICENSE
 Encoding: UTF-8

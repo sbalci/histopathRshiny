@@ -247,4 +247,9 @@ output$corr_highcharter <- highcharter::renderHighchart({
 
 
 
-
+# x <- corx::corx(mtcars[,1:6],
+#                 triangle = "lower",
+#                 stars = c(0.05, 0.01, 0.001),
+#                 describe = c(`$M$` = mean, `$SD$` = sd))
+# 
+# papaja::apa_table(x$apa, caption = "Example corr matrix", note = "* p < 0.05; ** p < 0.01; *** p < 0.001", escape = F)
