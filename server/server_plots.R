@@ -2,7 +2,7 @@
 
 
 output$scatter_plot <- renderPlot({
-  ggplot(
+  ggplot2::ggplot(
     read_data(),
     aes_string(
       x = input$x_variable,

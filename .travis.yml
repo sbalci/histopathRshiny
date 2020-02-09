@@ -1,35 +1,54 @@
-dist: trusty   # Use Ubuntu 14.04 image (instead of 12.04)
+# OS: Linux + macOS ------------------------------------------------------------
+# tic documentation: https://docs.ropensci.org/tic/dev/
+
+matrix:
+  include:
+    - os: osx
+      r: release
+    - os: linux
+      r: release
+      env:
+      - BUILD_PKGDOWN=true
+
+# meta -------------------------------------------------------------------------
 language: r
-sudo: false
-r: 3.4.1
-
-# Install renv if needed and have it restore packages.
-install:
-  - R -e 'if (system.file(package="renv") == "") install.packages("renv")'
-  - R -e "renv::consent(provided = TRUE); renv::restore()"
-
 cache:
-  # Main R library
-  packages: true
-  directories:
-    # renv packages
-    - $HOME/.local/share/renv
-    - $TRAVIS_BUILD_DIR/renv/library
-    # PhantomJS
-    - travis_phantomjs
+  - packages
+  - $HOME/.ccache
+  - $HOME/Library/Caches/Homebrew
+latex: false
 
-# Install PhantomJS (if not cached)
+# environment variables --------------------------------------------------------
+
+env:
+  global:
+    - MAKEFLAGS="-j 2"
+
+# Stages -----------------------------------------------------------------------
+
 before_install:
-  - "export PHANTOMJS_VERSION=2.1.1"
-  - "phantomjs --version"
-  - "export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH"
-  - "hash -r"
-  - "phantomjs --version"
-  - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
-  - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2; fi"
-  - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
-  - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
-  - "phantomjs --version"
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install ccache; fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+  - echo -e "options(Ncpus = 8, repos = structure(c(CRAN = 'https://cloud.r-project.org/')))" > $HOME/.Rprofile
+  - mkdir -p $HOME/.R && echo -e 'CXX_STD = CXX14\n\nCC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nC11=ccache g++\nC14=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
+  - mkdir -p $HOME/.ccache && echo -e 'max_size = 5.0G\nsloppiness = include_file_ctime\nhash_dir=false' > $HOME/.ccache/ccache.conf
+  - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
+  - R -q -e 'if (getRversion() < "3.2" && !requireNamespace("curl")) install.packages("curl")'
+  - R -q -e 'remotes::install_github("ropensci/tic", upgrade = "always"); print(tic::dsl_load()); tic::prepare_all_stages()'
+  - R -q -e 'tic::before_install()'
+install:
+  - R -q -e 'tic::install()'
+before_script: R -q -e 'tic::before_script()'
+script: R -q -e 'tic::script()'
+after_success: R -q -e 'tic::after_success()'
+after_failure: R -q -e 'tic::after_failure()'
+before_deploy: R -q -e 'tic::before_deploy()'
+deploy:
+  provider: script
+  script: R -q -e 'tic::deploy()'
+  on:
+    all_branches: true
+after_deploy: R -q -e 'tic::after_deploy()'
+after_script: R -q -e 'tic::after_script()'
 
-script:
-  - R -f run_tests.R
+# Custom user code -------------------------------------------------------------

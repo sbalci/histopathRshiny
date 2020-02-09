@@ -7,11 +7,13 @@
 library("shiny")
 
 suppressPackageStartupMessages({
+  library("dplyr")
+  library("ggplot2")
   library("shiny")
   library("shinyBS")
   library("shinyLP")
   library("shinythemes")
-  library("shinyPivot")
+  # library("shinyPivot")
 })
 
 # Shiny Options ----
@@ -244,12 +246,12 @@ ui <- navbarPage(
     "Pivot",
     # Pivot 1 ----
 
-    tabPanel(
-      "Pivot Table 1",
-
-      p("Pivot Table 1"),
-      source(file.path("ui", "ui_pivot1.R"),  local = TRUE)$value
-    ),
+    # tabPanel(
+    #   "Pivot Table 1",
+    # 
+    #   p("Pivot Table 1"),
+    #   source(file.path("ui", "ui_pivot1.R"),  local = TRUE)$value
+    # ),
 
 
     # Pivot 2 ----
@@ -473,7 +475,7 @@ server <- function(input, output, session) {
   source(file.path("server", "decision_server_table.R"), local = TRUE)$value
 
   # Pivot 1 ----
-  source(file.path("server", "server_pivot1.R"),  local = TRUE)$value
+  # source(file.path("server", "server_pivot1.R"),  local = TRUE)$value
 
   # Pivot 2 ----
   source(file.path("server", "server_pivot2.R"), local = TRUE)$value
