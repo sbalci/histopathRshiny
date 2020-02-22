@@ -1,6 +1,5 @@
 #' Return a list of categories given a data.frame
 #'
-#' @param df 
 #'
 #' @return named list with each entry listing all categories within a variable in the df
 #' @export

@@ -25,3 +25,8 @@ mydata-pre.xlsx
 ^dev_golem$
 find_package_names_in_project_regex.R
 ^tic\.R$
+.gitpod.Dockerfile
+.gitpod.yml
+.binder
+.circleci
+.github

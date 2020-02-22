@@ -1,15 +1,16 @@
 # time interval calculation function
-
 #' Title
 #'
 #' @param mydata 
+#' 
+#' @importFrom magrittr %>% 
+#' 
 #' @param SurgeryDate 
 #' @param LastFollowUpDate 
 #'
 #' @return
 #' @export
 #'
-#' @examples
 time_interval <- function(mydata, SurgeryDate, LastFollowUpDate) {
    mydata %>%
     dplyr::mutate(

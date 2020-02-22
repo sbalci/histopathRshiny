@@ -1,4 +1,4 @@
-Type: Compendium
+Type: Package
 Package: histopathRshiny
 Title: Histopathology Research Template Shiny App
 Version: 0.0.0.9000
@@ -7,34 +7,32 @@ Description: Histopathology Research Template Shiny App.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
-  shiny,
-golem,
-processx,
-attempt,
-DT,
-glue,
-htmltools,
-rio,
-survival,
-finalfit,
-dplyr,
-lubridate
 RoxygenNote: 7.0.2
+Roxygen: list(markdown = TRUE)
 URL: https://github.com/sbalci/histopathRshiny
 BugReports: https://github.com/sbalci/histopathRshiny/issues
+Imports: 
+    shiny,
+    golem,
+    processx,
+    attempt,
+    DT,
+    glue,
+    htmltools,
+    rio,
+    survival,
+    finalfit,
+    dplyr,
+    lubridate
 Suggests: 
-  testthat,
-rintrojs
-Roxygen: list(markdown = TRUE)
+    testthat,
+    rintrojs
 Depends: 
     arsenal,
     attempt,
-    correlation,
     crosstalk,
     dplyr,
     DT,
-    finalfit,
     forcats,
     foreign,
     ggcorrplot,
@@ -77,6 +75,7 @@ Depends:
     tibble,
     vroom
 Remotes: 
+    easystats/effectsize,
     easystats/correlation,
     easystats/report,
     ewenharrison/finalfit,
