@@ -11,6 +11,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://travis-ci.com/sbalci/histopathRshiny.svg?branch=master)](https://travis-ci.com/sbalci/histopathRshiny)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/sbalci/histopathRshiny?branch=master&svg=true)](https://ci.appveyor.com/project/sbalci/histopathRshiny)
+[![Gitpod
+Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/sbalci/histopathRshiny)
+[![Launch Rstudio
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sbalci/histopathRshiny/master?urlpath=rstudio)
 <!-- badges: end -->
 
 <!-- The goal of histopathRshiny is to ... -->

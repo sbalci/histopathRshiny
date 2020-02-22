@@ -1,3 +1,4 @@
+Type: Compendium
 Package: histopathRshiny
 Title: Histopathology Research Template Shiny App
 Version: 0.0.0.9000
@@ -7,22 +8,82 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    shiny,
-    golem,
-    processx,
-    attempt,
-    DT,
-    glue,
-    htmltools,
-    rio,
-    survival,
-    finalfit,
-    dplyr,
-    lubridate
+  shiny,
+golem,
+processx,
+attempt,
+DT,
+glue,
+htmltools,
+rio,
+survival,
+finalfit,
+dplyr,
+lubridate
 RoxygenNote: 7.0.2
 URL: https://github.com/sbalci/histopathRshiny
 BugReports: https://github.com/sbalci/histopathRshiny/issues
 Suggests: 
-    testthat,
-    rintrojs
+  testthat,
+rintrojs
 Roxygen: list(markdown = TRUE)
+Depends: 
+    arsenal,
+    attempt,
+    correlation,
+    crosstalk,
+    dplyr,
+    DT,
+    finalfit,
+    forcats,
+    foreign,
+    ggcorrplot,
+    ggplot2,
+    glue,
+    golem,
+    here,
+    highcharter,
+    htmltools,
+    janitor,
+    knitr,
+    lubridate,
+    pacman,
+    plotly,
+    processx,
+    psycho,
+    reactable,
+    reactlog,
+    readr,
+    readxl,
+    renv,
+    report,
+    rintrojs,
+    rio,
+    rlang,
+    rmarkdown,
+    rpivotTable,
+    rsconnect,
+    scales,
+    shiny,
+    shinyBS,
+    shinyFeedback,
+    shinyLP,
+    shinytest,
+    shinythemes,
+    shinyWidgets,
+    survival,
+    survminer,
+    testthat,
+    tibble,
+    vroom
+Remotes: 
+    easystats/correlation,
+    easystats/report,
+    ewenharrison/finalfit,
+    hadley/ggplot2,
+    r-lib/rlang,
+    rstudio/htmltools,
+    rstudio/reactlog,
+    rstudio/shiny,
+    smartinsightsfromdata/rpivotTable,
+    Thinkr-open/golem
