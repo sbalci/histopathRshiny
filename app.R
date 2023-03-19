@@ -55,7 +55,7 @@ ui <- navbarPage(
     "Choose Data",
     fluidRow(column(
       12,
-      # Select UI Data Type ----
+      ### Select UI Data Type ----
       sidebarPanel(
         radioButtons(
           inputId = "select_data_ui",
@@ -115,17 +115,17 @@ ui <- navbarPage(
     )
   ),
 
-  # ## Page 3: Descriptives ----
-  #
-  # navbarMenu(
-  #   "Descriptives",
-  #   ## Page 3a: Continious ----
-  #   tabPanel("Continious"),
-  #   ## Page 3b: Categorical ----
-  #   tabPanel("Categorical"),
-  #   tabPanel("EDA1"),
-  #   tabPanel("EDA2")
-  # ),
+  ## Page 3: Descriptives ----
+
+  navbarMenu(
+    "Descriptives",
+    ### Page 3a: Continious ----
+    tabPanel("Continious"),
+    ### Page 3b: Categorical ----
+    tabPanel("Categorical"),
+    tabPanel("EDA1"),
+    tabPanel("EDA2")
+  ),
   #
   # ## Page 4: Correlation ----
   # tabPanel(
