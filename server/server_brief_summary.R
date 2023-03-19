@@ -2,13 +2,15 @@
 
 output$dfsummary <- renderPrint({
   mydata <- briefSummaryData()
-  # names(mydata)
+  names(mydata)
   myreport <-
     mydata %>%
-    select(names(which(
-      sapply(mydata, class) == "character" |
-        sapply(mydata, class) == "numeric"
-    ))) %>%
+    select(where(is.numeric) | where(is.character)) %>%
+    # select(names(which(
+    #   sapply(mydata, class) == "character" |
+    #     sapply(mydata, class) == "numeric"
+    # ))) %>%
     report::report(.)
-  cat(myreport[["text_full"]])
+  cat(myreport)
+  # cat(myreport[["text_full"]])
 })

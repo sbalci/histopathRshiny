@@ -4,7 +4,8 @@ pivot2Data <- reactive({
     read_data()
   } else {
     read_data() %>%
-      dplyr::select(-id_cols)
+      # dplyr::select(-id_cols)
+    dplyr::select(setdiff(dplyr::everything(), dplyr::one_of("id_cols")))
   }
 })
 
@@ -21,9 +22,9 @@ observe({
 
 
 output$pivot2 <- rpivotTable::renderRpivotTable({
-  
+
   mydata <- pivot2Data()
-  
+
   rpivotTable::rpivotTable(mydata)
-  
+
 })

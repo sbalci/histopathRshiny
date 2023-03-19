@@ -85,4 +85,5 @@ Remotes:
     rstudio/reactlog,
     rstudio/shiny,
     smartinsightsfromdata/rpivotTable,
-    Thinkr-open/golem
+    Thinkr-open/golem,
+    rstudio/shinyuieditor

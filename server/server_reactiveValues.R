@@ -12,7 +12,7 @@ briefSummaryData <- reactive({
     read_data()
   } else {
     read_data() %>%
-      dplyr::select(-id_cols)
+      dplyr::select(setdiff(dplyr::everything(), dplyr::one_of(id_cols)))
   }
 })
 
@@ -20,22 +20,22 @@ briefSummaryData <- reactive({
 # 4 Func: Remove columns from data for correlation matrix
 
 corr_matrix_data <- reactive({
-  
+
   corr_matrix_Cols <- input$corr_mat_Cols
-  
+
   if (is.null(input$corr_mat_Cols)) {
-    
+
     read_data()
-    
+
   } else {
-    
+
     read_data() %>%
       dplyr::select(-corr_matrix_Cols)
-    
-  }
-  
 
-  
+  }
+
+
+
 })
 
 
